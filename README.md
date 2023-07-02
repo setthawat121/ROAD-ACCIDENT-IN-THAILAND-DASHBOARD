@@ -47,7 +47,43 @@ AccEffect.to_csv('AccEffect.csv',encoding = 'utf8')
 AccVehicle.to_csv('AccVehicle.csv',encoding = 'utf8')
 ```
 ## EDA
+เปลี่ยนชื่อ column ให้ทำความเข้าใจได้ง่ายขึ้น
+```
+ACD19_22.rename(columns = {"รถคันที่ 1":"ประเภทรถ","จำนวนรถที่เกิดเหตุ (รวมคันที่ 1)":"จำนวนรถที่เกิดเหตุ"},inplace = True)
+```
+ตรวจสอบค่าสถิติพื้นฐานของชุดข้อมูล
+```
+ACD19_22.describe()
+```
+ตรวจสอบค่าในฟิวค์ที่แสดงผลเป็นค่าว่าง (Null)
+```
+ACD19_22.isnull().sum()
+```
+แสดงความแตกต่างของข้อมูลในแต่ละ column
+```
+ACD19_22.nunique()
+```
+ตรวจสอบค่าความสัมพันธ์ของแต่ละ column
+
+ยิ่งมีค่าเข้าใกล้ 1 มากแค่ไหน ก็ยิ่งมีความสัมพันธ์กันมากเท่านั้น
+```
+ACD19_22.corr()
+```
+เรียงลำดับ column ของจำนวนผู้บาดเจ็บ ```ascending=False``` คือ เลือกจากมากไปน้อย
+```
+ACD19_22.sort_values(by="รวมจำนวนผู้บาดเจ็บ",ascending=False).head(10)
+```
+แสดงจำนวนรวมของข้อมูลโดยจำแนกตามชนิดของรถ
+```
+ACD19_22.groupby("ประเภทรถ").sum()
+```
+นับจำนวนดูว่าสภาพอากาศแบบไหนมีผลให้เกิดอุบัติเหตุเยอะที่สุด
+```
+Accident20192022.groupby(['สภาพอากาศ'])['สภาพอากาศ'].count()
+```
 ## Dashboard
+**URL link Dashboard:** https://app.powerbi.com/view?r=eyJrIjoiZjU2MDA1NjItNDYwOC00MjI5LWFkMzEtMTE3YjdlZmU4OTdlIiwidCI6IjhiMjdiNjQ2LTQ0YTAtNDZlYi05MDNiLWNhNjAyNmFkYjdmYSIsImMiOjEwfQ%3D%3D
+
 Requirements
 - ยานพาหนะชนิด เกิดอุบัติเหตุบ่อยที่สุด
 - ช่วงเวลาไหนของปีมีจำนวนอุบัติเหตุเยอะที่สุด
@@ -60,5 +96,3 @@ Requirements
 ![สกรีนช็อต 2023-07-02 210946](https://github.com/setthawat121/ROAD-ACCIDENT-IN-THAILAND-DASHBOARD/assets/96307668/4d0c3749-6b61-481b-b38e-6f9826150ec3)
 
 ![สกรีนช็อต 2023-07-02 221310](https://github.com/setthawat121/ROAD-ACCIDENT-IN-THAILAND-DASHBOARD/assets/96307668/cd6baf94-1916-49de-9505-36301327aae4)
-
-**URL link Dashboard:** https://app.powerbi.com/view?r=eyJrIjoiZjU2MDA1NjItNDYwOC00MjI5LWFkMzEtMTE3YjdlZmU4OTdlIiwidCI6IjhiMjdiNjQ2LTQ0YTAtNDZlYi05MDNiLWNhNjAyNmFkYjdmYSIsImMiOjEwfQ%3D%3D
