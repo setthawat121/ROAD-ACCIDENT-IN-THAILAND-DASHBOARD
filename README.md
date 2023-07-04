@@ -1,4 +1,5 @@
 # ROAD-ACCIDENT-IN-THAILAND-DASHBOARD
+![image](https://github.com/setthawat121/ROAD-ACCIDENT-IN-THAILAND-DASHBOARD/assets/96307668/0f9eeeee-7d65-4bef-acfa-2f9b779d21bb)
 ## Cleaning and SplitTable
 - ติดตั้ง library pandas ในชื่อ pd :
 ```
